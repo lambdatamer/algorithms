@@ -1,2 +1,2 @@
-const val DEBUG = true
+var DEBUG = true
 
