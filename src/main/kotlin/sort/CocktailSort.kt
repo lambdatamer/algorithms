@@ -1,10 +1,14 @@
+package sort
+
+import VERBOSE
+
 /**
  * Cocktail sort
  * Time complexity
  * Best     Average     Worst
  * O(n)     O(n^2)      O(n^2)
  */
-fun IntArray.cocktailSort(ascending: Boolean = true) = clone().apply {
+fun IntArray.cocktailSort() = clone().apply {
 
     if (isEmpty() || size == 1) return this
 
@@ -12,12 +16,12 @@ fun IntArray.cocktailSort(ascending: Boolean = true) = clone().apply {
     var right = size - 1
 
     do {
-        if (DEBUG) println("$left --> $right")
+        if (VERBOSE) println("$left --> $right")
         var isSorted = true
         for (i in left until right) {
             val first = get(i)
             val second = get(i + 1)
-            if (first > second && ascending || first < second && !ascending) {
+            if (first > second) {
                 swap(i, i + 1)
                 isSorted = false
             }
@@ -25,7 +29,7 @@ fun IntArray.cocktailSort(ascending: Boolean = true) = clone().apply {
         if (isSorted) break
         --right
 
-        if (DEBUG) {
+        if (VERBOSE) {
             println(joinToString())
             println("$left <-- $right")
         }
@@ -34,7 +38,7 @@ fun IntArray.cocktailSort(ascending: Boolean = true) = clone().apply {
         for (i in right downTo left) {
             val first = get(i)
             val second = get(i + 1)
-            if (first > second && ascending || first < second && !ascending) {
+            if (first > second) {
                 swap(i, i + 1)
                 isSorted = false
             }
@@ -42,7 +46,7 @@ fun IntArray.cocktailSort(ascending: Boolean = true) = clone().apply {
         if (isSorted) break
         ++left
 
-        if (DEBUG) println(joinToString())
+        if (VERBOSE) println(joinToString())
     } while (left < right)
 
 }

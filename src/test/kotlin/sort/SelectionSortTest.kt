@@ -1,3 +1,5 @@
+package sort
+
 /**
  * Bubble sort
  * Time complexity
@@ -7,7 +9,5 @@
 internal class SelectionSortTest : BaseSortingTest() {
     override val name = "Selection"
 
-    override fun sortAscending(array: IntArray) = array.selectionSort()
-
-    override fun sortDescending(array: IntArray) = array.selectionSort(false)
+    override fun sort(array: IntArray) = array.selectionSort()
 }

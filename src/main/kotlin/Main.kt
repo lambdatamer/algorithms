@@ -1,2 +1,2 @@
-var DEBUG = true
+var VERBOSE = true
 
