@@ -8,13 +8,13 @@ abstract class BaseSortingTest {
 
     companion object {
         private const val SIZE = 10
-        private val estimates = mutableMapOf<String, Long>()
+        private val estimates = mutableMapOf<String, Triple<Long, Long, Long>>()
 
         @AfterClass
         @JvmStatic
         fun `Print estimates`() {
-            println("\n\n[Estimates]")
-            estimates.forEach { (name, time) ->  println("$name: \t\t$time μs") }
+            println("\n\n${"[Estimates]".padEnd(20)}(RANDOM, SORTED, REVERSE-SORTED)")
+            estimates.forEach { (name, time) -> println("${name.padEnd(20)}$time μs") }
             println()
         }
     }
@@ -56,10 +56,15 @@ abstract class BaseSortingTest {
         assert(customSortedArray.contentEquals(array.apply(IntArray::sortDescending)))
     }
 
-    @Test fun `Calculate estimates`() {
+    @Test
+    fun `Calculate estimates`() {
         DEBUG = false
-        val time = measureNanoTime { sortAscending(generateTestArray()) }
-        estimates[name] = time
+        val array = generateTestArray()
+        estimates[name] = Triple(
+            measureNanoTime { sortAscending(array) }.also { array.sort() },
+            measureNanoTime { sortAscending(array) }.also { array.reverse() },
+            measureNanoTime { sortAscending(array) }
+        )
     }
 
 }

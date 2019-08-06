@@ -1,5 +1,5 @@
 /**
- * Bubble sort
+ * Cocktail sort
  * Time complexity
  * Best     Average     Worst
  * O(n)     O(n^2)      O(n^2)

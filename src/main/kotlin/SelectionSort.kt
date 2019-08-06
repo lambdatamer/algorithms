@@ -1,3 +1,9 @@
+/**
+ * Selection sort
+ * Time complexity
+ * Best     Average     Worst
+ * O(n^2)   O(n^2)      O(n^2)
+ */
 fun IntArray.selectionSort(ascending: Boolean = true) = clone().apply {
 
     if (isEmpty() || size == 1) return this
